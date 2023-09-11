@@ -1,35 +1,85 @@
-const RegistrationPage = () => {
+import Input from "./input";
+const Registration = () => {
     let UserDB = []
     function submitHandler(event) {
         event.preventDefault()
+
         let userDBfromStorage = JSON.parse(localStorage.getItem("User"))
         let formData = new FormData(event.target)
-
-
         let formDataObject = Object.fromEntries(formData)
+        const emails = []
+        const userNames = []
+        if (userDBfromStorage !== null) {
+            for (let i = 0; i < userDBfromStorage.length; i++) {
+                emails.push(userDBfromStorage[i].email)
+            }
+            if (emails.includes(formData.get("email"))) {
+                console.log("email already in use")
+                return;
+            }
+            else {
+                console.log("email is valid")
+            }
+            for (let i = 0; i < userDBfromStorage.length; i++) {
+                userNames.push(userDBfromStorage[i].Username)
+            }
+            if (userNames.includes(formData.get("Username"))) {
+                console.log("Username already in use")
+                return;
+            }
+            else {
+                console.log("Username is valid")
+            }
+
+
+        }
         UserDB.push(formDataObject)
         localStorage.setItem("User", JSON.stringify(UserDB))
     }
     return (
         <>
             <h1> Registration Form</h1>
-            <form type="submit" className="registration-form">
-                <label for="email" className="input-text" >Email</label>
-                <input name="email" type="email" />
-                <label for="password" className="input-text" >Password</label>
-                <input name="password" type="password" />
-                <label for="confirmPassword" className="input-text">Confirm Password</label>
-                <input name="confirmPassword" type="password" />
-                <label for="lastName" className="input-text">Lastname</label>
-                <input name="lastName" type="text" />
-                <label for="firstName" className="input-text" >Firstname</label>
-                <input name="firstName" type="text" />
-                <label for="address" className="input-text">Address</label>
-                <input name="address" type="text" />
-                <button type="submit" className="submit">Submit</button>
+            <form type="submit" onSubmit={submitHandler} >
+                <Input
+                    label="Username"
+                    type="text"
+                    required
+                />
+                <Input
+                    label="email"
+                    type="email"
+                    required
+                />
+                <Input
+                    label="password"
+                    type="password"
+                    required
+                />
+                <Input
+                    label="Confirm Password"
+                    type="password"
+                    required
+                />
+                <Input
+                    label="Lastname"
+                    type="text"
+                    required
+                />
+                <Input
+                    label="Firstname"
+                    type="text"
+                    required
+                />
+                <Input
+                    label="address"
+                    type="text"
+                    required
+                />
+                <button type="submit">Submit</button>
             </form>
         </>
     );
+
 }
 
-export default RegistrationPage;
+export default Registration;

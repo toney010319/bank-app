@@ -1,13 +1,20 @@
-
+import Input from "./input"
 const LoginPage = () => {
+
+
+
     return (
         <>
             <h1>Login</h1>
             <form>
-                <label for="username">Username</label>
-                <input type="text" />
-                <label for="password">Username</label>
-                <input type="password" />
+                <Input
+                    label="Email"
+                    type="email"
+                />
+                <Input
+                    label="Password"
+                    type="pasword"
+                />
                 <button type="submit">Submit</button>
             </form>
         </>
