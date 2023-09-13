@@ -1,79 +1,118 @@
+import { useState } from "react";
 import Input from "./input";
+
 const Registration = () => {
-    let UserDB = []
-    function submitHandler(event) {
-        event.preventDefault()
+    const storedAccounts = JSON.parse(localStorage.getItem("Accounts")) || [];
+    const [values, setValues] = useState({
+        email: "",
+        username: "",
+        password: "",
+        confirmPassword: "",
+        lastname: "",
+        firstname: "",
+        address: "",
+    });
+    const [errors, setErrors] = useState({});
 
-        let userDBfromStorage = JSON.parse(localStorage.getItem("User"))
-        let formData = new FormData(event.target)
-        let formDataObject = Object.fromEntries(formData)
-        const emails = []
-        const userNames = []
-        if (userDBfromStorage !== null) {
-            for (let i = 0; i < userDBfromStorage.length; i++) {
-                emails.push(userDBfromStorage[i].email)
-            }
-            if (emails.includes(formData.get("email"))) {
-                console.log("email already in use")
-                return;
-            }
-            else {
-                console.log("email is valid")
-            }
-            for (let i = 0; i < userDBfromStorage.length; i++) {
-                userNames.push(userDBfromStorage[i].Username)
-            }
-            if (userNames.includes(formData.get("Username"))) {
-                console.log("Username already in use")
-                return;
-            }
-            else {
-                console.log("Username is valid")
-            }
+    const onChange = (e) => {
+        const { name, value } = e.target;
+        setValues((prevValues) => ({ ...prevValues, [name]: value }));
+    };
 
+    const Validate = (value) => {
+        const selectedAccount = storedAccounts.find((account) => account.username === value.username);
+        const validationErrors = {};
+
+        if (selectedAccount) {
+            validationErrors.username = "Username is already in use.";
+        }
+
+        if (selectedAccount && selectedAccount.email === value.email) {
+            validationErrors.email = "Email is already in use.";
+        }
+
+        if (value.password !== value.confirmPassword) {
+            validationErrors.password = "Passwords do not match.";
+            validationErrors.confirmPassword = "Passwords do not match.";
 
         }
-        UserDB.push(formDataObject)
-        localStorage.setItem("User", JSON.stringify(UserDB))
-    }
+        return validationErrors;
+    };
+
+    const onSubmit = (e) => {
+        e.preventDefault();
+        const validationErrors = Validate(values);
+
+        if (Object.keys(validationErrors).length === 0) {
+
+            storedAccounts.push(values);
+            localStorage.setItem("Accounts", JSON.stringify(storedAccounts));
+            console.log("Successfully registered.");
+        }
+
+        setErrors(validationErrors);
+    };
     return (
         <>
             <h1> Registration Form</h1>
-            <form type="submit" onSubmit={submitHandler} >
+            <form type="submit" onSubmit={onSubmit} >
+
+                <Input
+                    label="Email"
+                    name="email"
+                    type="email"
+                    required="required"
+                    onChange={onChange}
+
+                />
+                {errors.email && <div>{errors.email}</div>}
+
                 <Input
                     label="Username"
+                    name="username"
                     type="text"
-                    required
+                    required="required"
+                    onChange={onChange}
+
                 />
+                {errors.username && <div>{errors.username}</div>}
                 <Input
-                    label="email"
-                    type="email"
-                    required
-                />
-                <Input
-                    label="password"
+                    label="Password"
+                    name="password"
                     type="password"
-                    required
+                    required="required"
+                    onChange={onChange}
+
                 />
+
                 <Input
                     label="Confirm Password"
+                    name="confirmPassword"
                     type="password"
-                    required
+                    required="required"
+                    onChange={onChange}
                 />
+                {errors.confirmPassword && <div>{errors.confirmPassword}</div>}
                 <Input
                     label="Lastname"
+                    name="lastname"
                     type="text"
-                    required
+                    required="required"
+                    onChange={onChange}
                 />
                 <Input
                     label="Firstname"
+                    name="firstname"
                     type="text"
-                    required
+                    required="required"
+                    onChange={onChange}
                 />
                 <Input
-                    label="address"
+                    label="Address"
+                    name="address"
                     type="text"
-                    required
+                    required="required"
+                    onChange={onChange}
                 />
                 <button type="submit">Submit</button>
             </form>
@@ -81,5 +120,6 @@ const Registration = () => {
     );
 
 }
+
 
 export default Registration;

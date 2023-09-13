@@ -1,12 +1,15 @@
 const Input = (props) => {
-    const { label, type, } = props
+    const { label, type, onChange, required, value, name } = props
 
     return (
         <>
             <label>{label}</label>
             <input
-                name={label}
+                name={name}
                 type={type}
+                onChange={onChange}
+                required={required}
+                value={value}
             />
         </>
     )
