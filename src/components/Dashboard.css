@@ -1,0 +1,126 @@
+/* Element | http://localhost:5173/ */
+
+#root>div:nth-child(1)>nav:nth-child(1)>ul:nth-child(2) {
+    display: flex;
+    gap: 50px;
+    margin: 10px;
+}
+
+/* Element | http://localhost:5173/ */
+
+#root>div:nth-child(1) {
+    /* border-color: 1px bold white; */
+    /* border-color: 1px white; */
+    border: 1px solid white;
+    text-align: center;
+    justify-content: center;
+    align-content: center;
+
+}
+
+/* Element | http://localhost:5173/ */
+
+#root>div:nth-child(1)>nav:nth-child(1) {
+    display: flex;
+}
+
+/* Element | http://localhost:5173/ */
+
+#root>div:nth-child(1)>nav:nth-child(1)>a:nth-child(1) {
+    margin-top: 10px;
+    margin-bottom: 0px;
+    margin-left: 10px;
+}
+
+/* Element | http://localhost:5173/ */
+
+#root>div:nth-child(2) {
+    display: flex;
+    flex-direction: row;
+    gap: 50px;
+    border: 1px solid white;
+}
+
+/* Element | http://localhost:5173/ */
+
+#root>div:nth-child(2)>div:nth-child(1) {
+    margin: 10px;
+}
+
+/* Element | http://localhost:5173/ */
+
+#root>div:nth-child(2)>div:nth-child(2) {
+    margin: 10px;
+}
+
+/* Element | http://localhost:5173/ */
+
+#root>div:nth-child(3) {
+    display: flex;
+}
+
+/* Element | http://localhost:5174/ */
+
+#root>div:nth-child(3) {
+    display: flex;
+    flex-direction: column;
+}
+
+/* Element | http://localhost:5174/ */
+
+#root>div:nth-child(3)>p:nth-child(1) {
+    margin-bottom: 0px;
+    margin-top: 0px;
+}
+
+/* Element | http://localhost:5174/ */
+
+#root>div:nth-child(3)>p:nth-child(2) {
+    margin-top: 0px;
+    margin-bottom: 0px;
+}
+
+/* Element | http://localhost:5174/ */
+
+#root>div:nth-child(3)>p:nth-child(3) {
+    margin-top: 0px;
+    margin-bottom: 0px;
+}
+
+/* Element | http://localhost:5174/ */
+
+#root>div:nth-child(3) {
+    display: flex;
+    flex-direction: column;
+}
+
+/* Element | http://localhost:5174/ */
+
+#root>div:nth-child(3)>p:nth-child(1) {
+    margin-bottom: 0px;
+    margin-top: 0px;
+}
+
+/* Element | http://localhost:5174/ */
+
+#root>div:nth-child(3)>p:nth-child(2) {
+    margin-top: 0px;
+    margin-bottom: 0px;
+}
+
+/* Element | http://localhost:5174/ */
+
+#root>div:nth-child(3)>p:nth-child(3) {
+    margin-top: 0px;
+    margin-bottom: 0px;
+}
+
+/* Element | http://localhost:5174/ */
+
+#root>div:nth-child(5) {
+    display: flex;
+    justify-content: space-evenly;
+    margin: ;
+    border: solid;
+    padding-bottom: 90px;
+}

@@ -1,6 +1,7 @@
 import { useState } from "react"
 import Input from "./input"
-const LoginPage = () => {
+const LoginPage = (props) => {
+    const { setCurrentPage, setLoginAccount } = props
     const [values, setValues] = useState({
         username: "",
         password: ""
@@ -17,6 +18,7 @@ const LoginPage = () => {
 
         const Accounts = JSON.parse(localStorage.getItem("Accounts"))
         const selectedAccount = Accounts.find(account => values.username === account.username)
+
         const validationErrors = {};
         if (!selectedAccount) {
             validationErrors.username = "User does not exist"
@@ -25,18 +27,27 @@ const LoginPage = () => {
             if (selectedAccount.password !== value.password) {
                 validationErrors.password = "Password does not exist";
             } else {
-                console.log("redirect to dashboard");
+                setLoginAccount(selectedAccount)
+                setCurrentPage('dashboard')
+
+
+
             }
         }
         return validationErrors
     }
+
     const onSubmit = (e) => {
         e.preventDefault()
         const validationErrors = Validate(values);
         setErrors(validationErrors);
 
-    }
 
+    }
+    const onRegister = () => {
+        setCurrentPage('register')
+
+    }
     return (
         <>
             <h1>Login</h1>
@@ -61,7 +72,7 @@ const LoginPage = () => {
                 {errors.password && <div>{errors.password}</div>}
                 <button type="submit">Submit</button>
             </form>
-            <button>Create New Account</button>
+            <button onClick={onRegister} >Create New Account</button>
         </>
     )
 }

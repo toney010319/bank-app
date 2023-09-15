@@ -1,7 +1,8 @@
 import { useState } from "react";
 import Input from "./input";
 
-const Registration = () => {
+const Registration = (props) => {
+    const { setCurrentPage } = props
     const storedAccounts = JSON.parse(localStorage.getItem("Accounts")) || [];
     const [values, setValues] = useState({
         email: "",
@@ -11,6 +12,7 @@ const Registration = () => {
         lastname: "",
         firstname: "",
         address: "",
+        balance: "0.00"
     });
     const [errors, setErrors] = useState({});
 
@@ -52,6 +54,9 @@ const Registration = () => {
 
         setErrors(validationErrors);
     };
+    const onLogin = () => {
+        setCurrentPage('login')
+    }
     return (
         <>
             <h1> Registration Form</h1>
@@ -116,6 +121,7 @@ const Registration = () => {
                 />
                 <button type="submit">Submit</button>
             </form>
+            <button onClick={onLogin}>Login</button>
         </>
     );
 
