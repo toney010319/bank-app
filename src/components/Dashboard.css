@@ -120,7 +120,7 @@
 #root>div:nth-child(5) {
     display: flex;
     justify-content: space-evenly;
-    margin: ;
+
     border: solid;
     padding-bottom: 90px;
 }
