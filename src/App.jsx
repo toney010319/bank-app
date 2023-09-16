@@ -3,7 +3,7 @@ import './App.css'
 import Dashboard from './components/Dashboard'
 import LoginPage from './components/LoginPage'
 import RegistrationPage from './components/RegistrationPage'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import Navbar from './components/Navbar'
 import Send from './components/Send'
 
@@ -12,6 +12,7 @@ import Send from './components/Send'
 
 function App() {
 
+  
   let Accounts = [{
     email: "test1@gmail.com",
     username: "test1",
@@ -31,9 +32,15 @@ function App() {
     address: "test one cebu",
     balance: "0.00"
   }]
-  localStorage.setItem("Accounts", JSON.stringify(Accounts))
+  
   const [currentPage, setCurrentPage] = useState('login')
   const [loginAccout, setLoginAccount] = useState(null)
+  useEffect( () => {
+    if (!localStorage.getItem("Accounts"))
+    {
+    localStorage.setItem("Accounts", JSON.stringify(Accounts))
+    }
+  },[])
   return (
     <>
       {currentPage === 'login' && <LoginPage setCurrentPage={setCurrentPage} setLoginAccount={setLoginAccount} />}
