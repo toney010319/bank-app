@@ -30,7 +30,7 @@ const Dashboard = (props) => {
                 <Navbar setSwitchPage={setSwitchPage} setCurrentPage={setCurrentPage} accounts={user} />
             </div>
             {switchPage === 'home' && <Home setSwitchPage={setSwitchPage} accounts={user} />}
-            {switchPage === 'Send' && <Send />}
+            {switchPage === 'Send' && <Send accounts={user} />}
             {switchPage === 'Deposit' && <Deposit />}
             {switchPage === 'Withdraw' && <Withdraw />}
         </>

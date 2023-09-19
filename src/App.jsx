@@ -12,7 +12,7 @@ import Send from './components/Send'
 
 function App() {
 
-  
+
   let Accounts = [{
     email: "test1@gmail.com",
     username: "test1",
@@ -21,7 +21,7 @@ function App() {
     lastname: "test",
     firstname: "one",
     address: "test one cebu",
-    balance: "0.00"
+    balance: "100.00"
   }, {
     email: "test2@gmail.com",
     username: "test2",
@@ -30,17 +30,16 @@ function App() {
     lastname: "test",
     firstname: "two",
     address: "test one cebu",
-    balance: "0.00"
+    balance: "100.00"
   }]
-  
+
   const [currentPage, setCurrentPage] = useState('login')
   const [loginAccout, setLoginAccount] = useState(null)
-  useEffect( () => {
-    if (!localStorage.getItem("Accounts"))
-    {
-    localStorage.setItem("Accounts", JSON.stringify(Accounts))
+  useEffect(() => {
+    if (!localStorage.getItem("Accounts")) {
+      localStorage.setItem("Accounts", JSON.stringify(Accounts))
     }
-  },[])
+  }, [])
   return (
     <>
       {currentPage === 'login' && <LoginPage setCurrentPage={setCurrentPage} setLoginAccount={setLoginAccount} />}
