@@ -1,7 +1,7 @@
 import { useState } from "react"
 
 const Send = (props) => {
-    const { accounts } = props
+    const { user } = props
     const storedAccounts = JSON.parse(localStorage.getItem("Accounts"))
     const [formValue, setformValue] = useState({ amount: "", username: "" })
     const [errors, setErrors] = useState({});
@@ -12,7 +12,7 @@ const Send = (props) => {
         setformValue((prevValues) => ({ ...prevValues, [name]: value }));
     }
     const Validate = () => {
-        const balanceValidation = accounts.balance < formValue.amount
+        const balanceValidation = user.balance >= formValue.amount
         const userValidation = storedAccounts.find((account) => account.username === formValue.username)
         const validationErrors = {};
 
@@ -33,12 +33,21 @@ const Send = (props) => {
         event.preventDefault()
         const validationErrors = Validate(formValue);
         if (Object.keys(validationErrors).length === 0) {
+            const sendTo = storedAccounts.map((account) => {
+                if (account.username === formValue.username) {
+                    account.balance += parseFloat(formValue.amount)
 
-            console.log(accounts.balance)
-            console.log(formValue.amount)
-            accounts.balance - formValue.amount
-            // i dont know the logic behind the hood ahahahaha ! 
-            //babalikan nalang kita pag buo na yong utak ko ! hahah
+                }
+                if (account.username === user.username) {
+                    user.balance -= parseFloat(formValue.amount)
+                    account.balance = user.balance
+                }
+                return account
+            })
+
+            localStorage.setItem("Accounts", JSON.stringify(sendTo))
+
+
 
         }
 
@@ -50,11 +59,11 @@ const Send = (props) => {
             <form type="submit" onClick={onSubmit}>
                 <h1>Send</h1>
                 <label>Enter Amount</label>
-                <input type="text" name="amount" placeholder="$0.00" onChange={onChange}></input>
+                <input type="number" name="amount" placeholder="$0.00" onChange={onChange} />
                 {errors.amount && <div>{errors.amount}</div>}
                 {errors.noamount && <div>{errors.noamount}</div>}
                 <label>Enter username</label>
-                <input type="text" name="username" placeholder="Username" onChange={onChange}></input>
+                <input type="text" name="username" placeholder="Username" onChange={onChange} />
                 {errors.username && <div>{errors.username}</div>}
                 <button type="submit" >Send</button>
             </form>

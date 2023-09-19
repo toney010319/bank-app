@@ -12,7 +12,7 @@ const Registration = (props) => {
         lastname: "",
         firstname: "",
         address: "",
-        balance: "100.00"
+        balance: 0
     });
     const [errors, setErrors] = useState({});
 

@@ -1,18 +1,18 @@
 
 const Home = (props) => {
-    const { accounts, setSwitchPage, loginAccout } = props
+    const { user } = props
 
     return (
 
         <>
             <h1>Home</h1>
             <div>
-                <p>Firstname: <b>{accounts.firstname}</b>  </p>
-                <p>LASTNAME: <b>{accounts.lastname}</b></p>
-                <p>EMAIL:<b>{accounts.email}</b></p>
+                <p>Firstname: <b>{user.firstname}</b>  </p>
+                <p>LASTNAME: <b>{user.lastname}</b></p>
+                <p>EMAIL:<b>{user.email}</b></p>
             </div>
             <div>
-                <p>Balance:<b>{accounts.balance}</b> </p>
+                <p>Balance:<b>{user.balance}</b> </p>
                 <p>transaction history</p>
             </div>
 

@@ -1,6 +1,6 @@
 const Navbar = (props) => {
     const { accounts, loginAccount, setCurrentPage, setSwitchPage } = props
-    console.log(accounts)
+
     const onLogout = () => {
         setCurrentPage('login')
     }

@@ -29,10 +29,10 @@ const Dashboard = (props) => {
                 </nav> */}
                 <Navbar setSwitchPage={setSwitchPage} setCurrentPage={setCurrentPage} accounts={user} />
             </div>
-            {switchPage === 'home' && <Home setSwitchPage={setSwitchPage} accounts={user} />}
-            {switchPage === 'Send' && <Send accounts={user} />}
-            {switchPage === 'Deposit' && <Deposit />}
-            {switchPage === 'Withdraw' && <Withdraw />}
+            {switchPage === 'home' && <Home setSwitchPage={setSwitchPage} user={user} />}
+            {switchPage === 'Send' && <Send user={user} />}
+            {switchPage === 'Deposit' && <Deposit user={user} />}
+            {switchPage === 'Withdraw' && <Withdraw user={user} />}
         </>
     )
 

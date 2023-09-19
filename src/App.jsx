@@ -21,7 +21,7 @@ function App() {
     lastname: "test",
     firstname: "one",
     address: "test one cebu",
-    balance: "100.00"
+    balance: 0
   }, {
     email: "test2@gmail.com",
     username: "test2",
@@ -30,11 +30,12 @@ function App() {
     lastname: "test",
     firstname: "two",
     address: "test one cebu",
-    balance: "100.00"
+    balance: 0
   }]
 
   const [currentPage, setCurrentPage] = useState('login')
   const [loginAccout, setLoginAccount] = useState(null)
+
   useEffect(() => {
     if (!localStorage.getItem("Accounts")) {
       localStorage.setItem("Accounts", JSON.stringify(Accounts))
