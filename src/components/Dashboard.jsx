@@ -7,9 +7,8 @@ import Deposit from './Deposit'
 import Withdraw from './Withdraw'
 
 const Dashboard = (props) => {
-    const { setCurrentPage, user, setLoginAccount, loginAccout, } = props
+    const { setCurrentPage, user } = props
     const [switchPage, setSwitchPage] = useState('home')
-
 
     // const onLogout = () => {
     //     setCurrentPage('login')

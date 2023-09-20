@@ -1,10 +1,18 @@
 import { useState } from "react"
 
-
+///TODO: mag lagay ka ng alert kung succesful na yong pag send paano malalaman ni user???  tsaka reset mo yong form  value
 const Withdraw = (props) => {
     const { user } = props
     const [formValue, setFormValue] = useState("")
 
+    const date = new Date();
+    const formattedDate = date.toLocaleDateString('en-US', {
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric',
+        hour: '2-digit',
+        minute: '2-digit'
+    });
     const onChange = (e) => {
         setFormValue(e.target.value)
     }
@@ -17,12 +25,14 @@ const Withdraw = (props) => {
 
                 account.balance -= parseFloat(formValue)
                 user.balance = account.balance
+                user.transaction = account.transaction.push({ type: "Witdhdraw", amount: formValue, time: formattedDate })
+
             }
 
             return account
 
         })
-        console.log(updatedAccounts)
+
         localStorage.setItem("Accounts", JSON.stringify(updatedAccounts))
 
 
@@ -36,7 +46,7 @@ const Withdraw = (props) => {
                 <label>Enter Amount</label>
                 <input type="number" name="balance" placeholder="$0.00" onChange={onChange} />
 
-                <button type="submit">Send</button>
+                <button type="submit">Witdraw</button>
             </form>
         </>
     )

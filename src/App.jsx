@@ -21,7 +21,9 @@ function App() {
     lastname: "test",
     firstname: "one",
     address: "test one cebu",
-    balance: 0
+    balance: 0,
+    transaction: [],
+
   }, {
     email: "test2@gmail.com",
     username: "test2",
@@ -30,7 +32,8 @@ function App() {
     lastname: "test",
     firstname: "two",
     address: "test one cebu",
-    balance: 0
+    balance: 0,
+    transaction: [],
   }]
 
   const [currentPage, setCurrentPage] = useState('login')

@@ -1,5 +1,5 @@
 import { useState } from "react"
-
+///TODO: mag lagay ka ng alert kung succesful na yong pag send paano malalaman ni user???  tsaka reset mo yong form  value
 const Send = (props) => {
     const { user } = props
     const storedAccounts = JSON.parse(localStorage.getItem("Accounts"))
@@ -42,6 +42,7 @@ const Send = (props) => {
                     user.balance -= parseFloat(formValue.amount)
                     account.balance = user.balance
                 }
+
                 return account
             })
 
@@ -56,7 +57,7 @@ const Send = (props) => {
     }
     return (
         <>
-            <form type="submit" onClick={onSubmit}>
+            <form type="submit" >
                 <h1>Send</h1>
                 <label>Enter Amount</label>
                 <input type="number" name="amount" placeholder="$0.00" onChange={onChange} />
@@ -65,7 +66,7 @@ const Send = (props) => {
                 <label>Enter username</label>
                 <input type="text" name="username" placeholder="Username" onChange={onChange} />
                 {errors.username && <div>{errors.username}</div>}
-                <button type="submit" >Send</button>
+                <button type="submit" onClick={onSubmit} >Send</button>
             </form>
         </>
     )

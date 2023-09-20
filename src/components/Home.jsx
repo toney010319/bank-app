@@ -1,3 +1,4 @@
+import TransactionHistory from "./TransactionHistory"
 
 const Home = (props) => {
     const { user } = props
@@ -13,7 +14,8 @@ const Home = (props) => {
             </div>
             <div>
                 <p>Balance:<b>{user.balance}</b> </p>
-                <p>transaction history</p>
+
+                <TransactionHistory user={user} />
             </div>
 
             <div>
