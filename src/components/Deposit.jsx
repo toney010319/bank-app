@@ -2,7 +2,7 @@ import { useState } from "react"
 ///TODO: mag lagay ka ng alert kung succesful na yong pag send paano malalaman ni user???  tsaka reset mo yong form  value
 
 const Deposit = (props) => {
-    const { user } = props
+    const { user, setLoginAccount } = props
     const [formValue, setFormValue] = useState("")
 
     const date = new Date();
@@ -22,14 +22,17 @@ const Deposit = (props) => {
 
     const onSubmit = (event) => {
         event.preventDefault()
+        // let newAccountDetails = {}
         const storedAccounts = JSON.parse(localStorage.getItem("Accounts"))
         const updatedAccounts = storedAccounts.map((account) => {
             if (account.email === user.email) {
 
-                account.balance += parseFloat(formValue)
-                user.balance = account.balance
-                user.transaction = account.transaction.push({ type: "Deposit", amount: `$${formValue}.00`, time: formattedDate })
-
+                const newBalance = account.balance += parseFloat(formValue)
+                const newTransaction = { type: "Deposit", amount: `$${formValue}.00`, time: formattedDate }
+                account.transaction.push(newTransaction)
+                user.balance = newBalance
+                user.transaction = account.transaction
+                // newAccountDetails = { ...account, balance: newBalance, transaction: [...(account.transaction || []),] }
             }
 
             return account
@@ -37,6 +40,7 @@ const Deposit = (props) => {
         })
 
         localStorage.setItem("Accounts", JSON.stringify(updatedAccounts))
+        setLoginAccount(user)
 
 
 

@@ -1,7 +1,7 @@
 import { useState } from "react"
 ///TODO: mag lagay ka ng alert kung succesful na yong pag send paano malalaman ni user???  tsaka reset mo yong form  value
 const Send = (props) => {
-    const { user } = props
+    const { user, setLoginAccount } = props
     const storedAccounts = JSON.parse(localStorage.getItem("Accounts"))
     const [formValue, setformValue] = useState({ amount: "", username: "" })
     const [errors, setErrors] = useState({});
@@ -11,6 +11,15 @@ const Send = (props) => {
         const { name, value } = e.target;
         setformValue((prevValues) => ({ ...prevValues, [name]: value }));
     }
+    const date = new Date();
+    const formattedDate = date.toLocaleDateString('en-US', {
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric',
+        hour: '2-digit',
+        minute: '2-digit'
+    });
+
     const Validate = () => {
         const balanceValidation = user.balance >= formValue.amount
         const userValidation = storedAccounts.find((account) => account.username === formValue.username)
@@ -30,23 +39,28 @@ const Send = (props) => {
         return validationErrors;
     };
     const onSubmit = (event) => {
+
         event.preventDefault()
         const validationErrors = Validate(formValue);
         if (Object.keys(validationErrors).length === 0) {
             const sendTo = storedAccounts.map((account) => {
                 if (account.username === formValue.username) {
                     account.balance += parseFloat(formValue.amount)
-
+                    account.transaction.push({ type: "Received", amount: `$${formValue.amount}.00`, from: user.username, time: formattedDate })
                 }
                 if (account.username === user.username) {
                     user.balance -= parseFloat(formValue.amount)
                     account.balance = user.balance
+                    account.transaction.push({ type: "Send", amount: `$${formValue.amount}.00`, to: formValue.username, time: formattedDate })
+                    user.transaction = account.transaction
                 }
+
 
                 return account
             })
 
             localStorage.setItem("Accounts", JSON.stringify(sendTo))
+            setLoginAccount(user)
 
 
 

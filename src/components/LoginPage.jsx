@@ -21,11 +21,11 @@ const LoginPage = (props) => {
 
         const validationErrors = {};
         if (!selectedAccount) {
-            validationErrors.username = "User does not exist"
+            validationErrors.username = "That wasn't correct. Try again?"
         }
         else {
             if (selectedAccount.password !== value.password) {
-                validationErrors.password = "Password does not exist";
+                validationErrors.password = "That wasn't correct. Try again?"
             } else {
                 setLoginAccount(selectedAccount)
                 setCurrentPage('dashboard')
@@ -52,6 +52,8 @@ const LoginPage = (props) => {
         <>
             <h1>Login</h1>
             <form type="submit" onSubmit={onSubmit}>
+                {errors.username && <div>{errors.username}</div>}
+                {errors.password && <div>{errors.password}</div>}
                 <Input
                     label="Username"
                     name="username"
@@ -60,7 +62,7 @@ const LoginPage = (props) => {
                     value={values.username}
                     onChange={onChange}
                 />
-                {errors.username && <div>{errors.username}</div>}
+
                 <Input
                     label="Password"
                     name="password"
@@ -69,7 +71,7 @@ const LoginPage = (props) => {
                     value={values.password}
                     onChange={onChange}
                 />
-                {errors.password && <div>{errors.password}</div>}
+
                 <button type="submit">Submit</button>
             </form>
             <button onClick={onRegister} >Create New Account</button>

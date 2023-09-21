@@ -48,7 +48,7 @@ function App() {
     <>
       {currentPage === 'login' && <LoginPage setCurrentPage={setCurrentPage} setLoginAccount={setLoginAccount} />}
       {currentPage === 'register' && <RegistrationPage setCurrentPage={setCurrentPage} />}
-      {currentPage === 'dashboard' && <Dashboard setCurrentPage={setCurrentPage} user={loginAccout} />}
+      {currentPage === 'dashboard' && <Dashboard setCurrentPage={setCurrentPage} setLoginAccount={setLoginAccount} user={loginAccout} />}
 
 
       <br />
