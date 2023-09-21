@@ -25,7 +25,7 @@ const Withdraw = (props) => {
 
                 account.balance -= parseFloat(formValue)
                 user.balance = account.balance
-                account.transaction.push({ type: "Witdhdraw", amount: formValue, time: formattedDate })
+                account.transaction.push({ type: "Witdhdraw", amount: `$${formValue}.00`, time: formattedDate })
                 user.transaction = account.transaction
 
             }
@@ -45,7 +45,7 @@ const Withdraw = (props) => {
             <form type="submit" onSubmit={onSubmit}>
                 <h1>Withdraw</h1>
                 <label>Enter Amount</label>
-                <input type="number" name="balance" placeholder="$0.00" onChange={onChange} />
+                <input type="number" name="amount" placeholder="$0.00" onChange={onChange} />
 
                 <button type="submit">Witdraw</button>
             </form>

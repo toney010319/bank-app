@@ -31,7 +31,7 @@ const Send = (props) => {
         if (!formValue.amount)
             validationErrors.noamount = "Please enter Amount"
 
-        if (!userValidation) {
+        if (userValidation) {
             validationErrors.username = "Account number does not exist.";
         }
 
@@ -46,12 +46,12 @@ const Send = (props) => {
             const sendTo = storedAccounts.map((account) => {
                 if (account.username === formValue.username) {
                     account.balance += parseFloat(formValue.amount)
-                    account.transaction.push({ type: "Received", amount: `$${formValue.amount}.00`, from: user.username, time: formattedDate })
+                    account.transaction.push({ type: "Received", amount: `$${formValue.amount}.00`, from: `From: ${user.username}`, time: formattedDate })
                 }
                 if (account.username === user.username) {
                     user.balance -= parseFloat(formValue.amount)
                     account.balance = user.balance
-                    account.transaction.push({ type: "Send", amount: `$${formValue.amount}.00`, to: formValue.username, time: formattedDate })
+                    account.transaction.push({ type: "Send", amount: `$${formValue.amount}.00`, to: `To: ${formValue.username}`, time: formattedDate })
                     user.transaction = account.transaction
                 }
 

@@ -4,11 +4,11 @@ const TransactionHistory = (props) => {
     const { user } = props
 
 
-    const listOfTransaction = user.transaction && user.transaction.map((transaction, index) => (
-
+    const listOfTransaction = user.transaction && user.transaction.map((transaction, index) =>
+    (
         < div key={index} >
 
-            <p>You {transaction.type} an amount of: {transaction.amount} {transaction.time} </p>
+            <p>You {transaction.type} an amount of: {transaction.amount} {transaction.to} {transaction.from} {transaction.time} </p>
 
         </div >
 
