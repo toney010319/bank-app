@@ -2,7 +2,12 @@ import AddExpense from "./Addexpense"
 import './BudgetTracker.css'
 const BudgetTracker = (props) => {
     const { user, setSwitchPage } = props
-
+    const onRemove = () => {
+        console.log("remove")
+    }
+    const onEdit = () => {
+        console.log("edit")
+    }
     const listOfExpenses = user.budgetTracker && user.budgetTracker.map((budgetTracker, index) =>
     (
 
@@ -12,8 +17,8 @@ const BudgetTracker = (props) => {
         }}>
             <p style={{ width: "180.417px" }}>{budgetTracker.name}</p>
             <p>{budgetTracker.cost}</p>
-            <div><button>X</button>
-                <button>E</button></div>
+            <div><button onClick={onRemove}>X</button>
+                <button onClick={onEdit}>E</button></div>
         </div>
 
     ))

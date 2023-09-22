@@ -32,7 +32,7 @@ const Deposit = (props) => {
                 const newTransaction = { type: "Deposit", amount: `$${formValue}.00`, time: formattedDate }
                 account.transaction.push(newTransaction)
                 // user.balance = newBalance
-                // user.transaction = account.transaction
+                user.transaction = account.transaction
                 newAccountDetails = { ...account, balance: newBalance, transaction: [...(account.transaction || []),] }
             }
 
