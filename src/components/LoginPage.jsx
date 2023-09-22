@@ -1,7 +1,7 @@
 import { useState } from "react"
 import Input from "./input"
 const LoginPage = (props) => {
-    const { setCurrentPage, setLoginAccount } = props
+    const { setCurrentPage, setUser } = props
     const [values, setValues] = useState({
         username: "",
         password: ""
@@ -27,7 +27,7 @@ const LoginPage = (props) => {
             if (selectedAccount.password !== value.password) {
                 validationErrors.password = "That wasn't correct. Try again?"
             } else {
-                setLoginAccount(selectedAccount)
+                setUser(selectedAccount)
                 setCurrentPage('dashboard')
 
 

@@ -1,7 +1,8 @@
 import { useState } from "react"
+import TransactionHistory from "./TransactionHistory"
 ///TODO: mag lagay ka ng alert kung succesful na yong pag send paano malalaman ni user???  tsaka reset mo yong form  value
 const Send = (props) => {
-    const { user, setLoginAccount } = props
+    const { user, setUser } = props
     const storedAccounts = JSON.parse(localStorage.getItem("Accounts"))
     const [formValue, setformValue] = useState({ amount: "", username: "" })
     const [errors, setErrors] = useState({});
@@ -22,6 +23,7 @@ const Send = (props) => {
 
     const Validate = () => {
         const balanceValidation = user.balance >= formValue.amount
+        const userNameValidation = user.username === formValue.username
         const userValidation = storedAccounts.find((account) => account.username === formValue.username)
         const validationErrors = {};
 
@@ -31,8 +33,11 @@ const Send = (props) => {
         if (!formValue.amount)
             validationErrors.noamount = "Please enter Amount"
 
-        if (userValidation) {
+        if (!userValidation) {
             validationErrors.username = "Account number does not exist.";
+        }
+        if (userNameValidation) {
+            validationErrors.username1 = "You can not send money to yourself"
         }
 
 
@@ -41,29 +46,31 @@ const Send = (props) => {
     const onSubmit = (event) => {
 
         event.preventDefault()
+        let newAccountDetails = {}
         const validationErrors = Validate(formValue);
         if (Object.keys(validationErrors).length === 0) {
-            const sendTo = storedAccounts.map((account) => {
+            const updatedAccounts = storedAccounts.map((account) => {
                 if (account.username === formValue.username) {
                     account.balance += parseFloat(formValue.amount)
                     account.transaction.push({ type: "Received", amount: `$${formValue.amount}.00`, from: `From: ${user.username}`, time: formattedDate })
+                    // const newBalance = account.balance += parseFloat(formValue.amount)
+                    // const newTransaction = { type: "Received", amount: `$${formValue.amount}.00`, from: `From: ${user.username}`, time: formattedDate }
+                    // account.transaction.push(newTransaction)
+                    // newAccountDetails = { ...account, balance: newBalance, transaction: [...(account.transaction || [])] }
                 }
                 if (account.username === user.username) {
-                    user.balance -= parseFloat(formValue.amount)
-                    account.balance = user.balance
-                    account.transaction.push({ type: "Send", amount: `$${formValue.amount}.00`, to: `To: ${formValue.username}`, time: formattedDate })
-                    user.transaction = account.transaction
+
+                    const newBalance = user.balance -= parseFloat(formValue.amount)
+                    const newTransaction = account.transaction.push({ type: "Send", amount: `$${formValue.amount}.00`, to: `To: ${formValue.username}`, time: formattedDate })
+                    user.transaction.push(newTransaction)
+                    newAccountDetails = { ...account, balance: newBalance, transaction: [...(account.transaction || [])] }
                 }
 
 
                 return account
             })
-
-            localStorage.setItem("Accounts", JSON.stringify(sendTo))
-            setLoginAccount(user)
-
-
-
+            localStorage.setItem("Accounts", JSON.stringify(updatedAccounts))
+            setUser(newAccountDetails)
         }
 
         setErrors(validationErrors);
@@ -72,6 +79,7 @@ const Send = (props) => {
     return (
         <>
             <form type="submit" >
+
                 <h1>Send</h1>
                 <label>Enter Amount</label>
                 <input type="number" name="amount" placeholder="$0.00" onChange={onChange} />
@@ -80,6 +88,7 @@ const Send = (props) => {
                 <label>Enter username</label>
                 <input type="text" name="username" placeholder="Username" onChange={onChange} />
                 {errors.username && <div>{errors.username}</div>}
+                {errors.username1 && <div>{errors.username1}</div>}
                 <button type="submit" onClick={onSubmit} >Send</button>
             </form>
         </>

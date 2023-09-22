@@ -1,8 +1,8 @@
 import { useState } from "react"
-
+import TransactionHistory from "./TransactionHistory"
 ///TODO: mag lagay ka ng alert kung succesful na yong pag send paano malalaman ni user???  tsaka reset mo yong form  value
 const Withdraw = (props) => {
-    const { user, setLoginAccount } = props
+    const { user, setUser } = props
     const [formValue, setFormValue] = useState("")
 
     const date = new Date();
@@ -19,14 +19,17 @@ const Withdraw = (props) => {
 
     const onSubmit = (event) => {
         event.preventDefault()
+        let newAccountDetails = {}
         const storedAccounts = JSON.parse(localStorage.getItem("Accounts"))
         const updatedAccounts = storedAccounts.map((account) => {
             if (account.email === user.email) {
 
-                account.balance -= parseFloat(formValue)
-                user.balance = account.balance
-                account.transaction.push({ type: "Witdhdraw", amount: `$${formValue}.00`, time: formattedDate })
-                user.transaction = account.transaction
+                const newBalance = account.balance -= parseFloat(formValue)
+                const newTransaction = { type: "Witdhdraw", amount: `$${formValue}.00`, time: formattedDate }
+                account.transaction.push(newTransaction)
+                // user.balance = newBalance
+                // user.transaction = account.transaction
+                newAccountDetails = { ...account, balance: newBalance, transaction: [...(account.transaction || []),] }
 
             }
 
@@ -35,13 +38,14 @@ const Withdraw = (props) => {
         })
 
         localStorage.setItem("Accounts", JSON.stringify(updatedAccounts))
-        setLoginAccount(user)
+        setUser(newAccountDetails)
 
 
     }
 
     return (
         <>
+
             <form type="submit" onSubmit={onSubmit}>
                 <h1>Withdraw</h1>
                 <label>Enter Amount</label>

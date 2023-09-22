@@ -7,7 +7,7 @@ import Deposit from './Deposit'
 import Withdraw from './Withdraw'
 
 const Dashboard = (props) => {
-    const { setCurrentPage, user, setLoginAccount } = props
+    const { setCurrentPage, user, setUser } = props
     const [switchPage, setSwitchPage] = useState('home')
 
     // const onLogout = () => {
@@ -28,10 +28,10 @@ const Dashboard = (props) => {
                 </nav> */}
                 <Navbar setSwitchPage={setSwitchPage} setCurrentPage={setCurrentPage} accounts={user} />
             </div>
-            {switchPage === 'home' && <Home setSwitchPage={setSwitchPage} user={user} />}
-            {switchPage === 'Send' && <Send user={user} setLoginAccount={setLoginAccount} />}
-            {switchPage === 'Deposit' && <Deposit user={user} setLoginAccount={setLoginAccount} />}
-            {switchPage === 'Withdraw' && <Withdraw user={user} setLoginAccount={setLoginAccount} />}
+            {switchPage === 'home' && <Home setSwitchPage={setSwitchPage} user={user} setUser={setUser} />}
+            {switchPage === 'Send' && <Send user={user} setUser={setUser} />}
+            {switchPage === 'Deposit' && <Deposit user={user} setUser={setUser} />}
+            {switchPage === 'Withdraw' && <Withdraw user={user} setUser={setUser} />}
         </>
     )
 

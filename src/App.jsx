@@ -23,6 +23,7 @@ function App() {
     address: "test one cebu",
     balance: 0,
     transaction: [],
+    budgetTracker: []
 
   }, {
     email: "test2@gmail.com",
@@ -34,10 +35,11 @@ function App() {
     address: "test one cebu",
     balance: 0,
     transaction: [],
+    budgetTracker: []
   }]
 
   const [currentPage, setCurrentPage] = useState('login')
-  const [loginAccout, setLoginAccount] = useState(null)
+  const [user, setUser] = useState(null)
 
   useEffect(() => {
     if (!localStorage.getItem("Accounts")) {
@@ -46,9 +48,10 @@ function App() {
   }, [])
   return (
     <>
-      {currentPage === 'login' && <LoginPage setCurrentPage={setCurrentPage} setLoginAccount={setLoginAccount} />}
+
+      {currentPage === 'login' && <LoginPage setCurrentPage={setCurrentPage} setUser={setUser} />}
       {currentPage === 'register' && <RegistrationPage setCurrentPage={setCurrentPage} />}
-      {currentPage === 'dashboard' && <Dashboard setCurrentPage={setCurrentPage} setLoginAccount={setLoginAccount} user={loginAccout} />}
+      {currentPage === 'dashboard' && <Dashboard setCurrentPage={setCurrentPage} setUser={setUser} user={user} />}
 
 
       <br />

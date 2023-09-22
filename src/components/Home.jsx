@@ -1,9 +1,11 @@
 
+import AddExpense from "./Addexpense"
+import BudgetTracker from "./BudgetTracker"
 import TransactionHistory from "./TransactionHistory"
 
 
 const Home = (props) => {
-    const { user } = props
+    const { user, setUser } = props
 
     return (
         <>
@@ -17,17 +19,16 @@ const Home = (props) => {
                         <p>EMAIL:<b>{user.email}</b></p>
                     </div>
                     <div>
-                        <p>Balance:<b>{user.balance}</b> </p>
+                        <p>Balance: <b>{user.balance}</b> </p>
 
                         <TransactionHistory user={user} />
                     </div>
-
                     <div>
-                        <p>expense name</p>
-                        <p>cost</p>
-                        <p>action</p>
+
+                        <BudgetTracker user={user} />
                     </div>
-                    <button>add expenses</button>
+
+                    <AddExpense user={user} setUser={setUser} />
 
                 </>
             )}
