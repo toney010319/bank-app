@@ -5,7 +5,7 @@ import TransactionHistory from "./TransactionHistory"
 
 
 const Home = (props) => {
-    const { user, setUser } = props
+    const { user, setSwitchPage } = props
 
     return (
         <>
@@ -25,10 +25,10 @@ const Home = (props) => {
                     </div>
                     <div>
 
-                        <BudgetTracker user={user} />
+                        <BudgetTracker user={user} setSwitchPage={setSwitchPage} />
                     </div>
 
-                    <AddExpense user={user} setUser={setUser} />
+
 
                 </>
             )}

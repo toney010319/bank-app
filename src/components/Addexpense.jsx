@@ -20,26 +20,25 @@ const AddExpense = (props) => {
                 account.budgetTracker.push(newExpense)
                 // user.budgetTracker = account.budgetTracker
                 newAccountDetails = { ...account, budgetTracker: [...(account.budgetTracker || [])] }
-
             }
 
             return account
-
         })
-
 
         localStorage.setItem("Accounts", JSON.stringify(updatedAccounts))
         setUser(newAccountDetails)
+
 
     }
 
     return (
         <>
             <form onSubmit={onSubmit}>
+                <h1>Add Expense</h1>
                 <p>Expense Name</p>
-                <input type="text" name="name" onChange={onChange} />
+                <input type="text" name="name" onChange={onChange} required />
                 <p>Cost</p>
-                <input type="number" name="cost" onChange={onChange} />
+                <input type="number" name="cost" onChange={onChange} required />
                 <button type="submit">Add</button>
             </form>
         </>

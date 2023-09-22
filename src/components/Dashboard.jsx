@@ -5,6 +5,7 @@ import Send from './Send'
 import Home from './Home'
 import Deposit from './Deposit'
 import Withdraw from './Withdraw'
+import AddExpense from './Addexpense'
 
 const Dashboard = (props) => {
     const { setCurrentPage, user, setUser } = props
@@ -28,10 +29,11 @@ const Dashboard = (props) => {
                 </nav> */}
                 <Navbar setSwitchPage={setSwitchPage} setCurrentPage={setCurrentPage} accounts={user} />
             </div>
-            {switchPage === 'home' && <Home setSwitchPage={setSwitchPage} user={user} setUser={setUser} />}
+            {switchPage === 'home' && <Home setSwitchPage={setSwitchPage} user={user} setUser={setUser} setCurrentPage={setCurrentPage} />}
             {switchPage === 'Send' && <Send user={user} setUser={setUser} />}
             {switchPage === 'Deposit' && <Deposit user={user} setUser={setUser} />}
             {switchPage === 'Withdraw' && <Withdraw user={user} setUser={setUser} />}
+            {switchPage === 'AddExpense' && <AddExpense user={user} setUser={setUser} />}
         </>
     )
 
