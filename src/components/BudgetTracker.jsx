@@ -1,17 +1,32 @@
+import { useState } from "react";
 import AddExpense from "./Addexpense";
 import "./BudgetTracker.css";
 const BudgetTracker = (props) => {
-  const { user, setSwitchPage } = props;
+  const { user, setSwitchPage, setUser } = props;
 
-  const onRemove = () => {
+  const onRemove = (deleteBudgetTracker) => {
+    const newBudgetTracker = user.budgetTracker.filter(
+      (budgetTracker) => budgetTracker !== deleteBudgetTracker
+    );
+    let newAccountDetails = {};
     const storedAccounts = JSON.parse(localStorage.getItem("Accounts"));
     const updatedAccounts = storedAccounts.map((account) => {
       if (account.email === user.email) {
-        console.log(user.budgetTracker);
-        console.log("listOfExpenses", listOfExpenses);
+        account.budgetTracker = newBudgetTracker;
+        newAccountDetails = {
+          ...account,
+          budgetTracker: [...(account.budgetTracker || [])],
+        };
       }
+
+      return account;
     });
+    console.log("updated", updatedAccounts);
+    console.log("New", newAccountDetails);
+    localStorage.setItem("Accounts", JSON.stringify(updatedAccounts));
+    setUser(newAccountDetails);
   };
+
   const onEdit = () => {
     console.log("edit");
   };
@@ -30,7 +45,7 @@ const BudgetTracker = (props) => {
         <p style={{ width: "180.417px" }}>{budgetTracker.name}</p>
         <p>{budgetTracker.cost}</p>
         <div>
-          <button onClick={onRemove}>X</button>
+          <button onClick={() => onRemove(budgetTracker)}>X</button>
           <button onClick={onEdit}>E</button>
         </div>
       </div>
