@@ -21,8 +21,6 @@ const BudgetTracker = (props) => {
 
       return account;
     });
-    console.log("updated", updatedAccounts);
-    console.log("New", newAccountDetails);
     localStorage.setItem("Accounts", JSON.stringify(updatedAccounts));
     setUser(newAccountDetails);
   };
