@@ -1,63 +1,66 @@
-
-import './App.css'
-import Dashboard from './components/Dashboard'
-import LoginPage from './components/LoginPage'
-import RegistrationPage from './components/RegistrationPage'
-import { useEffect, useState } from 'react'
-import Navbar from './components/Navbar'
-import Send from './components/Send'
-
-
-
+import "./App.css";
+import Dashboard from "./components/Dashboard";
+import LoginPage from "./components/LoginPage";
+import RegistrationPage from "./components/RegistrationPage";
+import { useEffect, useState } from "react";
+import Navbar from "./components/Navbar";
+import Send from "./components/Send";
 
 function App() {
+  let Accounts = [
+    {
+      email: "test1@gmail.com",
+      username: "test1",
+      password: "test1",
+      confirmPassword: "test1",
+      lastname: "test",
+      firstname: "one",
+      address: "test one cebu",
+      balance: 0,
+      transaction: [],
+      budgetTracker: [],
+    },
+    {
+      email: "test2@gmail.com",
+      username: "test2",
+      password: "test2",
+      confirmPassword: "test2",
+      lastname: "test",
+      firstname: "two",
+      address: "test one cebu",
+      balance: 0,
+      transaction: [],
+      budgetTracker: [],
+    },
+  ];
 
-
-  let Accounts = [{
-    email: "test1@gmail.com",
-    username: "test1",
-    password: "test1",
-    confirmPassword: "test1",
-    lastname: "test",
-    firstname: "one",
-    address: "test one cebu",
-    balance: 0,
-    transaction: [],
-    budgetTracker: []
-
-  }, {
-    email: "test2@gmail.com",
-    username: "test2",
-    password: "test2",
-    confirmPassword: "test2",
-    lastname: "test",
-    firstname: "two",
-    address: "test one cebu",
-    balance: 0,
-    transaction: [],
-    budgetTracker: []
-  }]
-
-  const [currentPage, setCurrentPage] = useState('login')
-  const [user, setUser] = useState(null)
+  const [currentPage, setCurrentPage] = useState("login");
+  const [user, setUser] = useState(null);
 
   useEffect(() => {
     if (!localStorage.getItem("Accounts")) {
-      localStorage.setItem("Accounts", JSON.stringify(Accounts))
+      localStorage.setItem("Accounts", JSON.stringify(Accounts));
     }
-  }, [])
+  }, []);
   return (
     <>
-
-      {currentPage === 'login' && <LoginPage setCurrentPage={setCurrentPage} setUser={setUser} />}
-      {currentPage === 'register' && <RegistrationPage setCurrentPage={setCurrentPage} />}
-      {currentPage === 'dashboard' && <Dashboard setCurrentPage={setCurrentPage} setUser={setUser} user={user} />}
-
+      {currentPage === "login" && (
+        <LoginPage setCurrentPage={setCurrentPage} setUser={setUser} />
+      )}
+      {currentPage === "register" && (
+        <RegistrationPage setCurrentPage={setCurrentPage} />
+      )}
+      {currentPage === "dashboard" && (
+        <Dashboard
+          setCurrentPage={setCurrentPage}
+          setUser={setUser}
+          user={user}
+        />
+      )}
 
       <br />
-
     </>
-  )
+  );
 }
 
-export default App
+export default App;

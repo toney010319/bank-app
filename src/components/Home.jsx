@@ -11,18 +11,19 @@ const Home = (props) => {
         <>
             {user && (
                 <>
-
-                    <h1>Home</h1>
                     <div>
-                        <p>Firstname: <b>{user.firstname}</b>  </p>
-                        <p>LASTNAME: <b>{user.lastname}</b></p>
-                        <p>EMAIL:<b>{user.email}</b></p>
-                    </div>
-                    <div>
-                        <p>Balance: <b>{user.balance}</b> </p>
+                        <h1>Home</h1>
+                        <div>
+                            <p>Firstname: <b>{user.firstname}</b>  </p>
+                            <p>LASTNAME: <b>{user.lastname}</b></p>
+                            <p>EMAIL:<b>{user.email}</b></p>
 
-                        <TransactionHistory user={user} />
+
+                            <p>Balance: <b>${user.balance}.00</b> </p>
+                        </div>
                     </div>
+                    <TransactionHistory user={user} />
+
                     <div>
 
                         <BudgetTracker user={user} setSwitchPage={setSwitchPage} />

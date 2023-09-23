@@ -17,7 +17,7 @@ const TransactionHistory = (props) => {
     return (
         <>
             <div>
-                <h1>Transaction History</h1>
+                <h2>Transaction History</h2>
                 {listOfTransaction}
 
 

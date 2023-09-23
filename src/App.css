@@ -51,7 +51,7 @@ form:nth-child(4) {
   margin: 0 auto;
 }
 
-#root>form:nth-child(2) {
+#root > form:nth-child(2) {
   display: flex;
   flex-direction: column;
   gap: 10px;
