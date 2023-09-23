@@ -5,6 +5,7 @@ import TransactionHistory from "./TransactionHistory";
 const Deposit = (props) => {
   const { user, setUser } = props;
   const [formValue, setFormValue] = useState("");
+  const [error, setError] = useState("");
 
   const date = new Date();
   const formattedDate = date.toLocaleDateString("en-US", {
@@ -22,30 +23,35 @@ const Deposit = (props) => {
   const onSubmit = (event) => {
     event.preventDefault();
     let newAccountDetails = {};
-    const storedAccounts = JSON.parse(localStorage.getItem("Accounts"));
-    const updatedAccounts = storedAccounts.map((account) => {
-      if (account.email === user.email) {
-        const newBalance = (account.balance += parseFloat(formValue));
-        const newTransaction = {
-          type: "Deposit",
-          amount: `$${formValue}.00`,
-          time: formattedDate,
-        };
-        account.transaction.push(newTransaction);
-        // user.balance = newBalance
-        user.transaction = account.transaction;
-        newAccountDetails = {
-          ...account,
-          balance: newBalance,
-          transaction: [...(account.transaction || [])],
-        };
-      }
+    if (formValue <= 0) {
+      setError("Please Enter Valid Amount");
+    } else {
+      const storedAccounts = JSON.parse(localStorage.getItem("Accounts"));
+      const updatedAccounts = storedAccounts.map((account) => {
+        if (account.email === user.email) {
+          const newBalance = (account.balance += parseFloat(formValue));
+          const newTransaction = {
+            type: "Deposit",
+            amount: `$${formValue}.00`,
+            time: formattedDate,
+          };
+          account.transaction.push(newTransaction);
+          // user.balance = newBalance
+          user.transaction = account.transaction;
+          newAccountDetails = {
+            ...account,
+            balance: newBalance,
+            transaction: [...(account.transaction || [])],
+          };
+        }
 
-      return account;
-    });
-
-    localStorage.setItem("Accounts", JSON.stringify(updatedAccounts));
-    setUser(newAccountDetails);
+        return account;
+      });
+      alert(" Successfully Deposit ");
+      localStorage.setItem("Accounts", JSON.stringify(updatedAccounts));
+      setUser(newAccountDetails);
+    }
+    console.log(error);
   };
 
   return (
@@ -59,6 +65,7 @@ const Deposit = (props) => {
           placeholder="$0.00"
           onChange={onChange}
         />
+        {error && <div>{error}</div>}
 
         <button type="submit">Deposit</button>
       </form>
