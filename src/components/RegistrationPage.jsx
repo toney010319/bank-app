@@ -51,7 +51,7 @@ const Registration = (props) => {
     if (Object.keys(validationErrors).length === 0) {
       storedAccounts.push(values);
       localStorage.setItem("Accounts", JSON.stringify(storedAccounts));
-      console.log("Successfully registered.");
+      alert("Successfully registered.");
     }
 
     setErrors(validationErrors);
@@ -62,7 +62,7 @@ const Registration = (props) => {
   return (
     <>
       <h1> Registration Form</h1>
-      <form type="submit" onSubmit={onSubmit}>
+      <form onSubmit={onSubmit}>
         <Input
           label="Email"
           name="email"
