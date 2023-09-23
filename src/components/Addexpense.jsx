@@ -16,7 +16,7 @@ const AddExpense = (props) => {
       if (account.email === user.email) {
         const newExpense = {
           name: `${formValue.name}`,
-          cost: `$${formValue.cost}`,
+          cost: `${formValue.cost}`,
         };
         account.budgetTracker.push(newExpense);
         // user.budgetTracker = account.budgetTracker

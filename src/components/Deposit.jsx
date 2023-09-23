@@ -51,7 +51,7 @@ const Deposit = (props) => {
       localStorage.setItem("Accounts", JSON.stringify(updatedAccounts));
       setUser(newAccountDetails);
     }
-    console.log(error);
+   
   };
 
   return (
