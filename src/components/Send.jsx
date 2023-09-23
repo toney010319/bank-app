@@ -26,13 +26,15 @@ const Send = (props) => {
     const userValidation = storedAccounts.find(
       (account) => account.username === formValue.username
     );
+    const amountValidation = formValue.amount <= 0;
     const validationErrors = {};
 
     if (!balanceValidation) {
       validationErrors.amount = "insuficient amount.";
     }
     if (!formValue.amount) validationErrors.noamount = "Please enter Amount";
-
+    if (amountValidation)
+      validationErrors.isnumber = "Please Enter Valid Amount";
     if (!userValidation) {
       validationErrors.username = "Account number does not exist.";
     }
@@ -81,6 +83,7 @@ const Send = (props) => {
       });
       localStorage.setItem("Accounts", JSON.stringify(updatedAccounts));
       setUser(newAccountDetails);
+      alert("Sent Successfully ");
     }
 
     setErrors(validationErrors);
@@ -97,6 +100,7 @@ const Send = (props) => {
           onChange={onChange}
         />
         {errors.amount && <div>{errors.amount}</div>}
+        {errors.isnumber && <div>{errors.isnumber}</div>}
         {errors.noamount && <div>{errors.noamount}</div>}
         <label>Enter username</label>
         <input
