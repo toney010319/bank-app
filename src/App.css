@@ -1,4 +1,4 @@
-#root {
+/* #root {
   max-width: 1280px;
   margin: 0 auto;
   padding: 2rem;
@@ -56,3 +56,9 @@ form:nth-child(4) {
   flex-direction: column;
   gap: 10px;
 }
+body {
+  background-color: whitesmoke;
+  } */
+  body {
+    background-color: rgb(216, 209, 209);
+    }
