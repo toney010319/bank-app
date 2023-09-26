@@ -64,7 +64,7 @@ const Send = (props) => {
           // newAccountDetails = { ...account, balance: newBalance, transaction: [...(account.transaction || [])] }
         }
         if (account.username === user.username) {
-          const newBalance = (user.balance -= parseFloat(formValue.amount));
+          const newBalance = (account.balance -= parseFloat(formValue.amount));
           const newTransaction = account.transaction.push({
             type: "Send",
             amount: `$${formValue.amount}.00`,
@@ -82,6 +82,8 @@ const Send = (props) => {
         return account;
       });
       localStorage.setItem("Accounts", JSON.stringify(updatedAccounts));
+      console.log(updatedAccounts);
+      console.log(newAccountDetails);
       setUser(newAccountDetails);
       alert("Sent Successfully ");
     }
