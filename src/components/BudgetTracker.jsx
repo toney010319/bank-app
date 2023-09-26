@@ -29,7 +29,7 @@ const BudgetTracker = (props) => {
 
   let totalCost = 0;
   const storedAccounts = JSON.parse(localStorage.getItem("Accounts"));
-  const updatedAccounts = storedAccounts.map((account) => {
+    storedAccounts.map((account) => {
     if (account.email === user.email) {
       let listofCost = user.budgetTracker.map((a) => a.cost);
       console.log(listofCost);
