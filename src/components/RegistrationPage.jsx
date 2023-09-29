@@ -1,7 +1,6 @@
 import { useState } from "react";
 import Input from "./Input";
 import LoginIcon from "./icon/LoginIcon";
-///TODO: mag lagay ka ng alert kung succesful na yong registration paano malalaman ni user???
 const Registration = (props) => {
   const { setCurrentPage } = props;
   const storedAccounts = JSON.parse(localStorage.getItem("Accounts")) || [];

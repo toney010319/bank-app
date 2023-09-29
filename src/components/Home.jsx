@@ -3,7 +3,7 @@ import BudgetTracker from "./BudgetTracker";
 import TransactionHistory from "./TransactionHistory";
 
 const Home = (props) => {
-  const { user, setSwitchPage, setUser } = props;
+  const { user } = props;
 
   return (
     <>

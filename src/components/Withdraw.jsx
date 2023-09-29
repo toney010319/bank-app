@@ -1,5 +1,4 @@
 import { useState } from "react";
-import TransactionHistory from "./TransactionHistory";
 ///TODO: mag lagay ka ng alert kung succesful na yong pag send paano malalaman ni user???  tsaka reset mo yong form  value
 const Withdraw = (props) => {
   const { user, setUser } = props;
@@ -65,10 +64,10 @@ const Withdraw = (props) => {
 
   return (
     <>
-      <form type="submit" onSubmit={onSubmit}>
-        <h1>Withdraw</h1>
+      <form type="submit" onSubmit={onSubmit} className="flex flex-col gap-4" >
+        <h1 className="text-red-800 font-extrabold text-6xl flex justify-center  items-center">Withdraw</h1>
         <label>Enter Amount</label>
-        <input
+        <input className="py-1 text-center  font-medium rounded-full shadow-slate-500 shadow-md  focus:outline-none focus:ring focus:ring-slate-500"
           type="number"
           name="amount"
           placeholder="$0.00"
@@ -77,7 +76,7 @@ const Withdraw = (props) => {
         {errors.amount && <div>{errors.amount}</div>}
         {errors.isnumber && <div>{errors.isnumber}</div>}
 
-        <button type="submit">Witdraw</button>
+        <button type="submit" className="m-1 bg-gradient-to-r from-[#e78372] to-[#c44f3c] px-5  text-lg font-semibold text-slate-100 py-1 rounded-full shadow-slate-500 shadow-md hover:from-[#ff5b3e] hover:to-[#640d00f8]">Witdraw</button>
       </form>
     </>
   );

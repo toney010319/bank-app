@@ -1,8 +1,7 @@
 import { useState } from "react";
-import TransactionHistory from "./TransactionHistory";
 ///TODO: mag lagay ka ng alert kung succesful na yong pag send paano malalaman ni user???  tsaka reset mo yong form  value
 const Send = (props) => {
-  const { user, setUser } = props;
+  const { user, setUser,  } = props;
   const storedAccounts = JSON.parse(localStorage.getItem("Accounts"));
   const [formValue, setformValue] = useState({ amount: "", username: "" });
   const [errors, setErrors] = useState({});
@@ -32,7 +31,7 @@ const Send = (props) => {
     if (!balanceValidation) {
       validationErrors.amount = "insuficient amount.";
     }
-    if (!formValue.amount) validationErrors.noamount = "Please enter Amount";
+    // if (!formValue.amount) {validationErrors.noamount = "Please enter Amount";}
     if (amountValidation)
       validationErrors.isnumber = "Please Enter Valid Amount";
     if (!userValidation) {
@@ -54,8 +53,8 @@ const Send = (props) => {
           account.balance += parseFloat(formValue.amount);
           account.transaction.push({
             type: "Received",
-            amount: `$${formValue.amount}.00`,
-            from: `From: ${user.username}`,
+            amount: parseFloat(formValue.amount),
+            from: ` from:${user.username}`,
             time: formattedDate,
           });
           // const newBalance = account.balance += parseFloat(formValue.amount)
@@ -67,8 +66,8 @@ const Send = (props) => {
           const newBalance = (account.balance -= parseFloat(formValue.amount));
           const newTransaction = account.transaction.push({
             type: "Send",
-            amount: `$${formValue.amount}.00`,
-            to: `To: ${formValue.username}`,
+            amount: parseFloat(formValue.amount),
+            to: ` to:${formValue.username}`,
             time: formattedDate,
           });
           user.transaction.push(newTransaction);
@@ -92,31 +91,32 @@ const Send = (props) => {
   };
   return (
     <>
-      <form type="submit">
-        <h1>Send</h1>
+      <form type="submit" className="flex flex-col gap-4">
+        <h1 className="text-red-800 font-extrabold text-6xl flex justify-center  items-center">Send</h1>
         <label>Enter Amount</label>
-        <input
+        <input className="py-1 text-center  font-medium rounded-full shadow-slate-500 shadow-md  focus:outline-none focus:ring focus:ring-slate-500"
           type="number"
           name="amount"
           placeholder="$0.00"
           onChange={onChange}
         />
-        {errors.amount && <div>{errors.amount}</div>}
-        {errors.isnumber && <div>{errors.isnumber}</div>}
-        {errors.noamount && <div>{errors.noamount}</div>}
+        {errors.amount && <div className="text-red-800">{errors.amount}</div>}
+        {errors.isnumber && <div className="text-red-800">{errors.isnumber}</div>}
+        {errors.noamount && <div className="text-red-800">{errors.noamount}</div>}
         <label>Enter username</label>
-        <input
+        <input className="py-1 text-center  font-medium rounded-full shadow-slate-500 shadow-md  focus:outline-none focus:ring focus:ring-slate-500"
           type="text"
           name="username"
           placeholder="Username"
           onChange={onChange}
         />
-        {errors.username && <div>{errors.username}</div>}
-        {errors.username1 && <div>{errors.username1}</div>}
-        <button type="submit" onClick={onSubmit}>
+        {errors.username && <div className="text-red-800">{errors.username}</div>}
+        {errors.username1 && <div className="text-red-800">{errors.username1}</div>}
+        <button type="submit" onClick={onSubmit} className="m-1 bg-gradient-to-r from-[#e78372] to-[#c44f3c] px-5  text-lg font-semibold text-slate-100 py-1 rounded-full shadow-slate-500 shadow-md hover:from-[#ff5b3e] hover:to-[#640d00f8]">
           Send
         </button>
       </form>
+      
     </>
   );
 };

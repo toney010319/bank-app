@@ -1,11 +1,9 @@
-import { useState } from "react";
-import AddExpense from "./Addexpense";
+
 
 import EditIcon from "./icon/EditIcon";
 import RemoveIcon from "./icon/RemoveIcon";
 const BudgetTracker = (props) => {
-  const { user, setSwitchPage, setUser } = props;
-
+  const { user,  setUser,isSetShowAddExpense } = props;
   const onRemove = (deleteBudgetTracker) => {
     const newBudgetTracker = user.budgetTracker.filter(
       (budgetTracker) => budgetTracker !== deleteBudgetTracker
@@ -68,9 +66,7 @@ const BudgetTracker = (props) => {
         </div>
       </div>
     ));
-  const onAddExpense = () => {
-    setSwitchPage("AddExpense");
-  };
+  
 
   return (
     <>
@@ -96,7 +92,7 @@ const BudgetTracker = (props) => {
       </div>
       <button
         className=" self-center w-64 mt-6 bg-gradient-to-r from-[#e78372] to-[#c44f3c] px-20   font-semibold text-slate-100 py-1 rounded-full shadow-slate-500 shadow-md hover:from-[#ff5b3e] hover:to-[#640d00f8] "
-        onClick={onAddExpense}
+        onClick={() => isSetShowAddExpense(true)}
       >
         <p>Add Expense</p>
       </button>
