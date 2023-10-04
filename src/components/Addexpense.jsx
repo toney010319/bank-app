@@ -36,7 +36,7 @@ const AddExpense = (props) => {
   return (
     <>
       <form onSubmit={onSubmit} className="flex flex-col gap-4">
-        <h1 className="text-red-800 font-extrabold text-6xl flex justify-center  items-center">Add Expense</h1>
+        <h1 className="text-red-800 font-extrabold text-4xl flex justify-center  items-center">Add Expense</h1>
         <p>Expense Name</p>
         <input type="text" name="name" onChange={onChange} required   className="py-1 text-center  font-medium rounded-full shadow-slate-500 shadow-md  focus:outline-none focus:ring focus:ring-slate-500"/>
         <p>Cost</p>

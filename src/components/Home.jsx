@@ -11,21 +11,20 @@ const Home = (props) => {
         <>
           <div className=" w-4/12  justify-center text-center flex flex-col  shadow-slate-500 shadow-md drop-shadow-2xl rounded-lg">
             <p className="text-red-600">
-              <b>${user.balance}.00</b> 
+              <b>${user.balance}.00</b>
             </p>
             <div>
               <p>
-                Firstname: <b>{user.firstname}</b> 
+                Name: <b>{user.firstname} {user.lastname.slice(0, 1).toUpperCase()}</b>
               </p>
               <p>
-                LASTNAME: <b>{user.lastname}</b>
+                Email: <b>{user.email}</b>
               </p>
               <p>
-                EMAIL:<b>{user.email}</b>
+                Account Number: <b>{user.accountnumber}</b>
               </p>
             </div>
           </div>
-          
         </>
       )}
     </>

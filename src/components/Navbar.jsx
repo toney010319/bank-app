@@ -17,16 +17,17 @@ const Navbar = (props) => {
   const [isShowWithdraw, isSetShowWithdraw] = useState(false);
   const [isShowHistory, isSetShowHistory] = useState(false);
 
+ 
 
   return (
     <>
       <div className="  grid grid-cols-2 w-80  gap-3">
-        <div className="  hover:text-red-600 flex flex-col items-center justify-center text-justify shadow-slate-500 shadow-md drop-shadow-2xl rounded-lg">
+        <div className="  hover:text-red-600 flex flex-col items-center justify-center text-center   shadow-slate-500 shadow-md drop-shadow-2xl rounded-lg">
           <button
             className="  flex flex-col items-center  hover:text-red-600"
             onClick={() => isSetShowSend(true)}
           >
-            <div className="hover:text-red-600 flex items-center">
+            <div className="hover:text-red-600 flex items-center text-center justify-center  ml-3">
               <MoneyIcon className="  hover:text-red-600 w-10 h-10 text-slate-500 " />
               <SendIcon className="hover:text-red-600 text-slate-500" />
             </div>
@@ -44,14 +45,14 @@ const Navbar = (props) => {
               document.getElementById("dashboard")
             )}
         </div>
-        <div className="flex flex-col  shadow-slate-500 shadow-md drop-shadow-2xl rounded-lg">
+        <div className="  hover:text-red-600 flex flex-col  shadow-slate-500 shadow-md drop-shadow-2xl rounded-lg">
           <button
-            className="flex flex-col items-center"
+            className="flex flex-col items-center  hover:text-red-600"
             onClick={() => isSetShowDeposit(true)}
           >
             <div className="flex items-center">
-              <MoneyIcon className="w-10 h-10 text-slate-500" />
-              <DepositIcon className="text-slate-500" />
+              <MoneyIcon  className=" hover:text-red-600 w-10 h-10 text-slate-500" />
+              <DepositIcon className= " hover:text-red-600  text-slate-500" />
             </div>
             Deposit
           </button>
@@ -67,12 +68,12 @@ const Navbar = (props) => {
               document.getElementById("dashboard")
             )}
         </div>
-        <div className="flex flex-col    shadow-slate-500 shadow-md drop-shadow-2xl rounded-lg">
+        <div className="flex flex-col  hover:text-red-600  shadow-slate-500 shadow-md drop-shadow-2xl rounded-lg">
           <button
             className="flex flex-col items-center"
             onClick={() => isSetShowWithdraw(true)}
           >
-            <MoneyIcon className="w-10 h-10 text-slate-500" />
+            <MoneyIcon className="w-10 h-10 text-slate-500 hover:text-red-600" />
             Withdraw
           </button>
           {isShowWithdraw &&
@@ -88,9 +89,9 @@ const Navbar = (props) => {
             )}
         </div>
         <div>
-          <div className="flex flex-col    shadow-slate-500 shadow-md drop-shadow-2xl rounded-lg">
+          <div className="flex flex-col   hover:text-red-600  shadow-slate-500 shadow-md drop-shadow-2xl rounded-lg">
             <button className="flex flex-col items-center"  onClick={() => isSetShowHistory(true)}>
-              <HistoryIcon className="w-10 h-10 text-slate-500" />
+              <HistoryIcon className="  hover:text-red-600 w-10 h-10 text-slate-500" />
               History
             </button>
             {isShowHistory &&

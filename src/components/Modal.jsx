@@ -18,7 +18,7 @@ const OVERLAY_STYLES = {
   zIndex: 1000,
 };
 const Modal = (props) => {
-  const { children, onClose, user } = props;
+  const { children, onClose,  } = props;
   return (
     <>
       <div style={OVERLAY_STYLES} />

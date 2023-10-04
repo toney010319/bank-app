@@ -31,6 +31,7 @@ const Deposit = (props) => {
         if (account.email === user.email) {
           const newBalance = (account.balance += parseFloat(formValue));
           const newTransaction = {
+            transactionnumber: Math.floor(Math.random() * 100000000),
             type: "Deposit",
             amount: `$${formValue}.00`,
             time: formattedDate,
@@ -51,16 +52,17 @@ const Deposit = (props) => {
       localStorage.setItem("Accounts", JSON.stringify(updatedAccounts));
       setUser(newAccountDetails);
     }
-   
   };
 
   return (
     <>
-      <form type="submit" onSubmit={onSubmit} className="flex flex-col gap-4" >
-        <h1 className="text-red-800 font-extrabold text-6xl flex justify-center  items-center">Deposit</h1>
+      <form type="submit" onSubmit={onSubmit} className="flex flex-col gap-4">
+        <h1 className="text-red-800 font-extrabold text-6xl flex justify-center  items-center">
+          Deposit
+        </h1>
         <label>Enter Amount</label>
-        <input 
-       className="py-1 text-center  font-medium rounded-full shadow-slate-500 shadow-md  focus:outline-none focus:ring focus:ring-slate-500"
+        <input
+          className="py-1 text-center  font-medium rounded-full shadow-slate-500 shadow-md  focus:outline-none focus:ring focus:ring-slate-500"
           type="number"
           name="balance"
           placeholder="$0.00"
@@ -68,7 +70,12 @@ const Deposit = (props) => {
         />
         {error && <div>{error}</div>}
 
-        <button type="submit" className="m-1 bg-gradient-to-r from-[#e78372] to-[#c44f3c] px-5  text-lg font-semibold text-slate-100 py-1 rounded-full shadow-slate-500 shadow-md hover:from-[#ff5b3e] hover:to-[#640d00f8]">Deposit</button>
+        <button
+          type="submit"
+          className="m-1 bg-gradient-to-r from-[#e78372] to-[#c44f3c] px-5  text-lg font-semibold text-slate-100 py-1 rounded-full shadow-slate-500 shadow-md hover:from-[#ff5b3e] hover:to-[#640d00f8]"
+        >
+          Deposit
+        </button>
       </form>
     </>
   );

@@ -3,7 +3,7 @@ import Input from "./Input";
 import LoginIcon from "./icon/LoginIcon";
 const Registration = (props) => {
   const { setCurrentPage } = props;
-  const storedAccounts = JSON.parse(localStorage.getItem("Accounts")) || [];
+
   const [values, setValues] = useState({
     email: "",
     username: "",
@@ -13,11 +13,14 @@ const Registration = (props) => {
     firstname: "",
     address: "",
     balance: 0,
+    accountnumber: "",
+   
     transaction: [],
     budgetTracker: [],
   });
   const [errors, setErrors] = useState({});
 
+  const storedAccounts = JSON.parse(localStorage.getItem("Accounts")) || [];
   const onChange = (e) => {
     const { name, value } = e.target;
     setValues((prevValues) => ({ ...prevValues, [name]: value }));
@@ -37,6 +40,9 @@ const Registration = (props) => {
       validationErrors.email = "Email is already in use.";
     }
 
+    // if (value.pin.length !== 6) {
+    //   validationErrors.pin = " Please enter maximum of 6 digits only";
+    // }
     if (value.password !== value.confirmPassword) {
       validationErrors.password = "Passwords do not match.";
       validationErrors.confirmPassword = "Passwords do not match.";
@@ -46,10 +52,13 @@ const Registration = (props) => {
 
   const onSubmit = (e) => {
     e.preventDefault();
-    const validationErrors = Validate(values);
 
+    const validationErrors = Validate(values);
     if (Object.keys(validationErrors).length === 0) {
+      let account = Math.floor(Math.random() * 100000000);
+      values.accountnumber = account.toString();
       storedAccounts.push(values);
+      
       localStorage.setItem("Accounts", JSON.stringify(storedAccounts));
       alert("Successfully registered.");
       setCurrentPage("login");
@@ -95,7 +104,16 @@ const Registration = (props) => {
           onChange={onChange}
         />
         {errors.email && <div className="text-red-800">{errors.email}</div>}
-
+        {/* <Input
+          className=" py-1 text-center  font-medium rounded-full shadow-slate-500 shadow-md focus:outline-none focus:ring focus:ring-slate-500"
+          label="Enter 6-Digit PIN"
+          name="pin"
+          type="number"
+          pattern="[0-9]{6}"
+          required="required"
+          onChange={onChange}
+        />
+        {errors.pin && <div className="text-red-800">{errors.pin}</div>} */}
         <Input
           className="py-1 text-center font-medium  rounded-full shadow-slate-500 shadow-md focus:outline-none focus:ring focus:ring-slate-500"
           label="Username"
@@ -115,7 +133,6 @@ const Registration = (props) => {
           required="required"
           onChange={onChange}
         />
-
         <Input
           className="py-1 text-center font-medium rounded-full shadow-slate-500 shadow-md focus:outline-none focus:ring focus:ring-slate-500"
           label="Confirm Password"
