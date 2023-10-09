@@ -1,6 +1,4 @@
-import AddExpense from "./Addexpense";
-import BudgetTracker from "./BudgetTracker";
-import TransactionHistory from "./TransactionHistory";
+ 
 
 const Home = (props) => {
   const { user } = props;

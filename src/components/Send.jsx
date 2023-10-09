@@ -85,8 +85,7 @@ const Send = (props) => {
         return account;
       });
       localStorage.setItem("Accounts", JSON.stringify(updatedAccounts));
-      console.log(updatedAccounts);
-      console.log(newAccountDetails);
+       
       setUser(newAccountDetails);
       alert("Sent Successfully ");
     }
