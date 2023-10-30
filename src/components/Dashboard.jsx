@@ -1,10 +1,10 @@
 import { useState } from "react";
 import { createPortal } from "react-dom";
-import "./Dashboard.css";
+
 import Navbar from "./Navbar";
 import Home from "./Home";
 import AddExpense from "./Addexpense";
-// import BudgetTracker from "./BudgetTracker";
+
 import LogOutIcon from "./icon/LogOutIcon";
 import Modal from "./Modal";
 import TableOfBudgetTracker from "./TableOfBudgetTracker";
@@ -57,21 +57,6 @@ const Dashboard = (props) => {
             setUser={setUser}
           />
         </div>
-        {/* {isShowAddExpense &&
-          createPortal(
-            <Modal
-              user={user}
-              setUser={setUser}
-              onClose={() => isSetShowAddExpense(false)}
-            >
-              <AddExpense
-                user={user}
-                setUser={setUser}
-               
-              />
-            </Modal>,
-            document.getElementById("dashboard")
-          )} */}
       </div>
     </>
   );
