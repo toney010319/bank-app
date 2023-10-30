@@ -1,5 +1,6 @@
 const Input = (props) => {
-  const { label, type, onChange, required, value, name, className } = props;
+  const { label, type, pattern, onChange, required, value, name, className } =
+    props;
 
   return (
     <>
@@ -8,6 +9,7 @@ const Input = (props) => {
         className={className}
         name={name}
         type={type}
+        pattern={pattern}
         onChange={onChange}
         required={required}
         value={value}

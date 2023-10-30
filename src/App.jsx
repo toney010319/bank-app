@@ -3,8 +3,6 @@ import Dashboard from "./components/Dashboard";
 import LoginPage from "./components/LoginPage";
 import RegistrationPage from "./components/RegistrationPage";
 import { useEffect, useState } from "react";
-import Navbar from "./components/Navbar";
-import Send from "./components/Send";
 
 function App() {
   let Accounts = [
@@ -17,6 +15,8 @@ function App() {
       firstname: "one",
       address: "test one cebu",
       balance: 0,
+      accountnumber: "654321",
+      // pin: "123456",
       transaction: [],
       budgetTracker: [],
     },
@@ -29,6 +29,8 @@ function App() {
       firstname: "two",
       address: "test one cebu",
       balance: 0,
+      accountnumber: "123456",
+      // pin: "123456",
       transaction: [],
       budgetTracker: [],
     },
