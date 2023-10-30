@@ -52,7 +52,7 @@ const LoginPage = (props) => {
         </h1>
       </div>
       <div className="flex justify-center  items-center flex-col">
-        <h1 className="font-bold text-2xl">Login to Avion Bank</h1>
+        <h1 className="font-bold text-2xl">Login to Toney's Bank</h1>
         <form
           className="flex justify-center  items-center flex-col "
           type="submit"
