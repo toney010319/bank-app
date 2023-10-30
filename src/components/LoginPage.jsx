@@ -1,5 +1,6 @@
 import { useState } from "react";
 import Input from "./Input";
+import PhBankBold from "../assets/PhBankBold";
 const LoginPage = (props) => {
   const { setCurrentPage, setUser } = props;
   const [values, setValues] = useState({
@@ -41,17 +42,13 @@ const LoginPage = (props) => {
   const onRegister = () => {
     setCurrentPage("register");
   };
-  
+
   return (
     <>
       <div className="flex justify-center  items-center">
-        <img
-          className="w-32"
-          src="src\assets\avion-logo.png"
-          style={{ marginRight: "-25px" }}
-        />
+        <PhBankBold className=" w-28 h-28  text-red-800" />
         <h1 className="text-red-800 font-extrabold text-6xl flex justify-center  items-center">
-          Avion<span className="text-red-300">Bank</span>
+          Toney's<span className="text-red-300"> Bank</span>
         </h1>
       </div>
       <div className="flex justify-center  items-center flex-col">
@@ -104,7 +101,6 @@ const LoginPage = (props) => {
           </button>
         </p>
       </div>
-      
     </>
   );
 };

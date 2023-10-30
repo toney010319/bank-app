@@ -1,6 +1,7 @@
 import { useState } from "react";
 import Input from "./Input";
 import LoginIcon from "./icon/LoginIcon";
+import PhBankBold from "../assets/PhBankBold";
 const Registration = (props) => {
   const { setCurrentPage } = props;
 
@@ -14,7 +15,7 @@ const Registration = (props) => {
     address: "",
     balance: 0,
     accountnumber: "",
-   
+
     transaction: [],
     budgetTracker: [],
   });
@@ -58,7 +59,7 @@ const Registration = (props) => {
       let account = Math.floor(Math.random() * 100000000);
       values.accountnumber = account.toString();
       storedAccounts.push(values);
-      
+
       localStorage.setItem("Accounts", JSON.stringify(storedAccounts));
       alert("Successfully registered.");
       setCurrentPage("login");
@@ -73,13 +74,10 @@ const Registration = (props) => {
   return (
     <>
       <div className="flex justify-center  items-center  static  ">
-        <img
-          className=" w-28"
-          src="src\assets\avion-logo.png"
-          style={{ marginRight: "-25px" }}
-        />
+        {/* <img className=" w-28" src="src\assets\avion-logo.png" /> */}
+        <PhBankBold className=" w-28 h-28  text-red-800" />
         <h1 className="text-red-800 font-extrabold text-5xl flex justify-center  items-center">
-          Avion<span className="text-red-300">Bank</span>
+          Toney's<span className="text-red-300">Bank</span>
         </h1>
       </div>
 

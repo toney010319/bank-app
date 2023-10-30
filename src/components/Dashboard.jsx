@@ -8,9 +8,17 @@ import AddExpense from "./Addexpense";
 import LogOutIcon from "./icon/LogOutIcon";
 import Modal from "./Modal";
 import TableOfBudgetTracker from "./TableOfBudgetTracker";
+import PhBankBold from "../assets/PhBankBold";
 const Dashboard = (props) => {
-  const { setCurrentPage, user, setUser, isShowUpdate, isSetShowUpdate ,formValue,setFormValue} =
-    props;
+  const {
+    setCurrentPage,
+    user,
+    setUser,
+    isShowUpdate,
+    isSetShowUpdate,
+    formValue,
+    setFormValue,
+  } = props;
   const [isShowAddExpense, isSetShowAddExpense] = useState(false);
 
   const onLogout = () => {
@@ -19,13 +27,9 @@ const Dashboard = (props) => {
   return (
     <>
       <div className="flex justify-center  items-center">
-        <img
-          className="w-32"
-          src="src\assets\avion-logo.png"
-          style={{ marginRight: "-25px" }}
-        />
+        <PhBankBold className=" w-28 h-28  text-red-800" />
         <h1 className="text-red-800 font-extrabold text-6xl flex justify-center  items-center">
-          Avion<span className="text-red-300">Bank</span>
+          Toney's<span className="text-red-300">Bank</span>
         </h1>
       </div>
       <div className="mt-6 " id="dashboard">
@@ -51,8 +55,6 @@ const Dashboard = (props) => {
             isShowUpdate={isShowUpdate}
             isSetShowUpdate={isSetShowUpdate}
             setUser={setUser}
-           
-            
           />
         </div>
         {/* {isShowAddExpense &&
