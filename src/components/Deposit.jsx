@@ -1,7 +1,5 @@
 import { useState } from "react";
 
-///TODO: mag lagay ka ng alert kung succesful na yong pag send paano malalaman ni user???  tsaka reset mo yong form  value
-
 const Deposit = (props) => {
   const { user, setUser } = props;
   const [formValue, setFormValue] = useState("");
